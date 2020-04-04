@@ -1,0 +1,120 @@
+---
+title: "Homework 3"
+author: "[YOUR NAME HERE]"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    code_folding: hide
+    df_print: paged
+    fig_caption: yes
+    fig_height: 6
+    fig_width: 8
+    highlight: textmate
+    theme: readable
+    toc: yes
+    toc_float: yes
+---
+
+<!-- Feel free to edit theme / highlight in the YAML header above -->
+
+# Overview
+
+```{r setup, echo=TRUE, message = FALSE, warning = FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load libraries for homework problems
+library(tidyverse)
+library(gt)
+library(patchwork)
+# Read in COVID19 data
+cv19 <- read_csv('data/usa_covid19.csv')
+
+cv19
+
+```
+
+# Problem 1
+
+Create two new columns in `cv19`: 
+
+- `cases_new` the number of _new_ cases identified on a given day for a given state.
+
+- `deaths_new` the number of _new_ deaths confirmed on a given day for a given state.
+
+
+__Notes__: 
+
+- the lag function is helpful for this.
+
+- Your solution should look like this
+
+```{r}
+
+read_rds('solutions/01_solution.rds')
+
+```
+
+# Problem 2
+
+Compute the total number of new cases identified and deaths confirmed each day in the USA on or after March 1st, 2020. Your summarized data should look like this:
+
+```{r}
+
+read_rds('solutions/02_solution.rds')
+
+```
+
+
+# Problem 3
+
+Using the data created in problem 2, create two bar plots showing the number of new cases identified and deaths confirmed in the USA after March 1st, 2020.
+
+__Notes__ This is a great chance to learn about the [patchwork R package](https://patchwork.data-imaginist.com/). 
+
+Your solution should look like this
+
+```{r, fig.width=10}
+
+read_rds('solutions/03_solution.rds')
+
+```
+
+
+# Problem 4
+
+Add four new columns to the data you created in problem 1:
+
+- `cases_per100k`: Number of cases per 100,000 citizens 
+- `deaths_per100k`: Number of deaths per 100,000 citizens
+- `cases_dbl_days`: Number of days until case count doubles, based on current day's case count 
+- `deaths_dbl_days`: Number of days until death count doubles, based on current day's death count. 
+
+__Challenge yourself__: 
+
+- filter the data you have created in this problem to contain only the most recent day. 
+
+- Identify the 10 states that have the highest death rate per 100,000 citizens. 
+
+- Tabulate the total number, rate, and days to double for cases and deaths in each of these 10 states. 
+
+Your solution should look like this: 
+
+```{r}
+
+read_rds('solutions/04_solution.rds')
+
+```
+
+
+# Problem 5
+
+__Learn something new__: take a look at a famous [flipbook](https://evamaerey.github.io/little_flipbooks_library/racing_bars/racing_barcharts.html#1) created by Gina Reynolds. The `cv19` data have a very similar structure to that of the flipbook in Gina's talk. Learn about the `ggplot2` tools that are used in the flipbook and try to adapt them to create the 'racing bar chart' below. 
+
+![](solutions/05_solution.gif)
+
+
+
+
+
+
