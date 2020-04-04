@@ -17,8 +17,6 @@ output:
 
 <!-- Feel free to edit theme / highlight in the YAML header above -->
 
-# Overview
-
 ```{r setup, echo=TRUE, message = FALSE, warning = FALSE}
 
 knitr::opts_chunk$set(echo = TRUE)
@@ -27,12 +25,55 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(gt)
 library(patchwork)
-# Read in COVID19 data
+
+# Read in COVID-19 data
+# R/make_data.R creates this file
 cv19 <- read_csv('data/usa_covid19.csv')
+
+```
+
+
+# Overview
+
+The COVID-19 pandemic is an ongoing public health emergency in the United States (US) and worldwide. Since `r min(cv19$date)`, the New York times has monitored and shared COVID-19 data (see [github repo here](https://github.com/nytimes/covid-19-data)) from across the US at the state and county level. 
+
+## Data dictionary
+
+I have modified the New York times data to include information about state's population levels. The data are described below: 
+
+```{r}
+
+c("date" = "Date", 
+  "state" =  "State in the US", 
+  "cases_total" = "Total number of cases as of date", 
+  "deaths_total" = "Total number of deaths as of date",
+  "pop_2015" = "Estimated population as of 2015"
+) %>% 
+  enframe() %>% 
+  gt(rowname_col = "name") %>%
+  tab_stubhead(label = 'Variable name') %>% 
+  cols_label(value = 'Variable description') %>% 
+  cols_align('right') %>% 
+  tab_footnote(locations = cells_body(rows = 5, columns = 2),
+    footnote = "Source: usmap::countypop") %>% 
+  tab_footnote(locations = cells_body(columns = 2, rows = 2), 
+    footnote = 'US = United States') %>% 
+  tab_header(title = 'Dictionary for New York Times COVID-19 data',
+    subtitle = paste("Last updated:", max(cv19$date)))
+  
+```
+
+## Data pages
+
+The data (`cv19`) are printed below:
+
+```{r}
 
 cv19
 
 ```
+
+
 
 # Problem 1
 
@@ -45,7 +86,7 @@ Create two new columns in `cv19`:
 
 __Notes__: 
 
-- the lag function is helpful for this.
+- the `lag()` function is helpful for this.
 
 - Your solution should look like this
 
