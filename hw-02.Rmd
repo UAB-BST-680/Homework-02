@@ -124,22 +124,7 @@ read_rds('solutions/03_solution.rds')
 
 # Problem 4
 
-Add four new columns to the data you created in problem 1:
-
-- `cases_per100k`: Number of cases per 100,000 citizens 
-- `deaths_per100k`: Number of deaths per 100,000 citizens
-- `cases_dbl_days`: Number of days until case count doubles, based on current day's case count 
-- `deaths_dbl_days`: Number of days until death count doubles, based on current day's death count. 
-
-__Challenge yourself__: 
-
-- filter the data you have created in this problem to contain only the most recent day. 
-
-- Identify the 10 states that have the highest death rate per 100,000 citizens. 
-
-- Tabulate the total number, rate, and days to double for cases and deaths in each of these 10 states. 
-
-Your solution should look like this: 
+Using the data from problem 1, create the table below:
 
 ```{r}
 
@@ -147,6 +132,23 @@ read_rds('solutions/04_solution.rds')
 
 ```
 
+Hints: 
+
+To create the dataset that will generate this table, you will likely need to 
+- filter the data from problem 1 to contain the 2 most recent weeks. 
+
+- derive the following columns: 
+
+    + `cases_per100k`: Number of cases per 100,000 citizens 
+
+    + `deaths_per100k`: Number of deaths per 100,000 citizens
+
+    + `cases_mar`: Number of days until case count doubles, based on current     day's case count 
+    
+    + `deaths_mar`: Number of days until death count doubles, based on
+    current day's death count. 
+
+- filter your data down to the 10 states that have the highest death rate per 100,000 citizens. 
 
 # Problem 5
 

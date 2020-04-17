@@ -30,7 +30,7 @@ na_to_zero <- function(x){
 # and, as a bonus, make the names more clear
 out <- map_dfr(out, 
   .f = ~right_join(.x, blank) %>% 
-    mutate(across(c(cases, deaths), na_to_zero)) %>% 
+    mutate_at(vars(cases, deaths), na_to_zero) %>% 
     tidyr::fill(date)
 ) %>% 
   rename(cases_total = cases, deaths_total = deaths)
