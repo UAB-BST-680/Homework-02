@@ -115,9 +115,9 @@ __Notes__ This is a great chance to learn about the [patchwork R package](https:
 
 Your solution should look like this
 
-```{r, fig.width=10}
+```{r, out.width='100%'}
 
-read_rds('solutions/03_solution.rds')
+knitr::include_graphics('solutions/03_solution.png')
 
 ```
 
